@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer {
+    content: "";
+    background: no-repeat url('./Vectors.png');
+    background-size: cover;
+}
