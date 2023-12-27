@@ -86,14 +86,14 @@ const AddMovie = ({ params }) => {
     const imagePreview = selectedImage || editableMovie ? (
         <img
             key={selectedImage ? selectedImage.name : editableMovie?.imageUrl}
-            className='w-full rounded-lg'
+            className='rounded-lg'
             src={selectedImage ? URL.createObjectURL(selectedImage) : editableMovie?.imageUrl}
             alt="Thumb"
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '100%', height: '473px', objectFit: 'contain' }}
         />
     ) : (
         <div className="flex flex-col items-center justify-center pt-5 pb-6"
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '100%', height: '473px' }}
         >
             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">Click to add an image.</p>
         </div>
@@ -103,13 +103,13 @@ const AddMovie = ({ params }) => {
     return (
         // <section className="font-sans">
         <div className='sm:w-full p-5 md:p-5 lg:p-8 xl:p-12' style={{ minHeight: 'calc(100vh - 92px)' }}>
-            <p className='text-h3 leading-h3 lg:text-h2 lg:leading-h2 sm:text-h3 sm:leading-h3 md:text-h3 md:leading-h3 text-white mb-10'>Create a new movie</p>
+            <p className='text-h3 leading-h3 lg:text-h2 lg:leading-h2 sm:text-h3 sm:leading-h3 md:text-h3 md:leading-h3 text-white mb-10'>{isEditMode ? "Edit" : "Create a new movie"}</p>
             <form onSubmit={submitHandler}>
                 <div className='flex gap-5 flex-col sm:flex-row'>
 
                     <div
                         onClick={imagePreviewClickHandler}
-                        className="flex flex-col items-center justify-center border border-white border-dashed rounded-lg mb-2 bg-input cursor-pointer md:w-full basis-1/2"
+                        className="flex flex-col items-center justify-center border border-white border-dashed rounded-lg mb-2 bg-input cursor-pointer md:w-full basis-1/2 p-3"
                     // style={{ maxWidth: '100%', md: { maxWidth: '50%' } }}
                     // style={{ width: '100%', height: 'auto' }}
                     >
