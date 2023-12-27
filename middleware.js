@@ -9,5 +9,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/', '/addMovie/:path*', '/api/addMovie/:path*'],
+    matcher: ['/', '/movie/:path*', '/api/addMovie/:path*'],
 }
