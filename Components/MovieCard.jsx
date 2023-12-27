@@ -8,7 +8,7 @@ const MovieCard = ({ movie, index }) => {
             <Link href={`/movie/${movie._id}`} className="flex justify-center" style={{ flex: '1 1 auto' }} >
                 <Image
                     className='object-cover rounded-md'
-                    style={{ width: '100%', height: 'auto' }}
+                    style={{ width: '100%', height: '400px', objectFit: 'contain' }}
                     width={266}
                     height={400}
                     src={movie?.imageUrl ?? 'fallback-image-url'}
