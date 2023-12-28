@@ -135,7 +135,7 @@ const AddMovie = ({ params }) => {
                                 defaultValue={editableMovie?.title}
                                 placeholder="Title"
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="bg-input text-white sm:text-sm rounded-lg block w-full p-2.5"
+                                className="bg-input text-white text-body-sm leading-body-sm rounded-lg block w-full p-2.5"
                             />
 
                             <input
@@ -145,15 +145,15 @@ const AddMovie = ({ params }) => {
                                 defaultValue={editableMovie?.releasedYear}
                                 placeholder="Publishing year"
                                 onChange={(e) => setReleaseYear(e.target.value)}
-                                className="bg-input sm:w-2/3 text-white sm:text-sm rounded-lg block p-2.5"
+                                className="bg-input sm:w-2/3 text-white text-body-sm leading-body-sm rounded-lg block p-2.5"
                             />
                         </div>
 
                         <div className='flex gap-2'>
-                            <button type="button" className="w-full text-white bg-background border border-white  font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                            <button type="button" className="w-full text-white bg-background border border-white text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center "
                                 onClick={() => router.push('/')}
                             >Cancel</button>
-                            <button type="submit" className="w-full text-white bg-primary border border-white  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">{editableMovie ? "Update" : "Submit"}</button>
+                            <button type="submit" className="w-full text-white bg-primary border border-white text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center ">{editableMovie ? "Update" : "Submit"}</button>
                         </div>
                     </div>
 
