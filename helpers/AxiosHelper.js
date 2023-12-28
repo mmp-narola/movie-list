@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getTokenFromLocalStorage, removeTokenFromLocalStorage } from "./TokenHelper";
+import { toast } from "react-toastify";
 
 const LOCAL_API_URL = "http://localhost:3000/api";
 
@@ -12,10 +13,10 @@ const axiosApi = axios.create({
 });
 
 const HandleErrorResponse = (error) => {
-    console.log('error', error)
+
     if (!error.response) {
         const errorMessage = error?.message || "Network error - something went wrong";
-        // toast.error(errorMessage);
+        toast.error(errorMessage);
         return Promise.reject(error);
     }
 
@@ -26,10 +27,10 @@ const HandleErrorResponse = (error) => {
         removeTokenFromLocalStorage();
         errorMessage = data?.errorMessage || "Unauthorized access";
     } else {
-        errorMessage = data?.errorMessages?.[0]?.message || data?.errorMessage || data?.error || errorMessage;
+        errorMessage = data
     }
 
-    // toast.error(errorMessage);
+    toast.error(errorMessage);
     return Promise.reject(error);
 };
 

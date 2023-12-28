@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { ApiHelper } from '../../helpers/ApiHelper'
 import React, { useEffect, useRef, useState } from 'react'
+import { toast } from 'react-toastify'
 
 
 const AddMovie = ({ params }) => {
@@ -39,16 +40,16 @@ const AddMovie = ({ params }) => {
         try {
             if (isEditMode) {
                 const res = await ApiHelper.updateMovie(movieId, updatedData);
-                alert(res?.message);
+                toast.success(res?.message);
                 router.push('/');
             } else {
                 const imageUrl = await uploadImage(selectedImage);
                 const res = await ApiHelper.addMovie({ title, releasedYear, imageUrl });
-                alert(res?.message);
+                toast.success(res?.message);
                 router.push('/');
             }
         } catch (error) {
-            alert(error?.response?.data);
+            toast.error(error?.response?.data);
         }
     }
 

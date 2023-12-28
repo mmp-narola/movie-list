@@ -8,6 +8,7 @@ import Loader from '../Components/Loader'
 import MovieCard from '../Components/MovieCard'
 import Pagination from '../Components/Pagination'
 import NoMovie from '../Components/NoMovie'
+import { toast } from "react-toastify";
 
 export default function Home() {
   const router = useRouter()
@@ -39,11 +40,16 @@ export default function Home() {
   }, [currentPage]);
 
   const logoutHandler = async () => {
-    const res = await ApiHelper.logout()
-
-    if (res) {
-      router.push('/login');
+    try {
+      const res = await ApiHelper.logout()
+      if (res) {
+        toast.success(res)
+        router.push('/login');
+      }
+    } catch (error) {
+      console.log('error', error)
     }
+
   }
 
   const addMovieHandler = () => {
