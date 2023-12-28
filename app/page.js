@@ -65,7 +65,7 @@ export default function Home() {
           {moviesData?.movies?.length > 0 ?
             <div className="md:p-3 lg:p-6 xl:p-12">
               <div className="flex justify-between">
-                <div className="flex">
+                <div className="flex items-center">
                   <span className="xl:text-h2 lg:text-h2 lg:leading-h2 md:text-h3 md:leading-h3 sm:text-h3 sm:leading-h3 xs:text-h3 xs:leading-h3 text-white">
                     My Movies
                   </span>
@@ -90,8 +90,8 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-              <div className="flex justify-center">
-                <div className="p-2 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-8">
+              <div className="flex justify-center py-14">
+                <div className="py-16 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-8">
                   {moviesData?.movies?.map((movie, index) => (
                     <MovieCard movie={movie} index={index} key={movie._id} />
                   ))}
