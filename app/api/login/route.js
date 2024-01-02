@@ -30,7 +30,7 @@ export const POST = async (request) => {
         if (!isMatch) {
             return errorHandler(NextResponse, 400, "Invalid credentials")
         }
-        console.log('user', user)
+
         const token = generateToken(user._id)
 
         const cookieData = await cookieSetter(token, true)
