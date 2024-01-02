@@ -20,11 +20,11 @@ const Login = () => {
             const res = await ApiHelper.login({ email: email, password: password });
             if (res) {
                 toast.success(res?.message)
+                setIsApiCalling(false)
                 router.push('/')
             } else {
                 toast.error(res?.error)
             }
-            setIsApiCalling(false)
         } catch (error) {
             console.log('error', error)
         }
