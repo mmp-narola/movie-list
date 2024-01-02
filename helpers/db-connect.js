@@ -9,7 +9,7 @@ function dbConnect() {
     mongoose.connect(process.env.MONGODB_URL, {
         // useNewUrlParser: true,
         // useUnifiedTopology: true,
-        // autoIndex: true
+        autoIndex: true
     })
     mongoose.connection.on('connected', () => {
         console.log("Connected with database.")
