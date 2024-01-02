@@ -8,7 +8,7 @@ import { cookieSetter } from '../../../helpers/cookieSetter';
 
 dbConnect()
 
-export async function POST(request) {
+export const POST = async (request) => {
     try {
 
         const { email, password } = await request.json()
