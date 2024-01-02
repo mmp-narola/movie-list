@@ -10,7 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [isApiCalling, setIsApiCalling] = useState(false)
     const router = useRouter()
-    console.log('isApiCalling', isApiCalling)
+
     const submitHandler = async (e) => {
         e.preventDefault()
 
