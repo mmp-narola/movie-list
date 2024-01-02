@@ -12,33 +12,33 @@ export const POST = async (request) => {
     try {
 
         const { email, password } = await request.json()
-        console.log({ email, password })
+
         if (!email) {
             return new NextResponse('Missing Email.', { status: 400 })
         }
         if (!password) {
             return new NextResponse('Missing Password.', { status: 400 })
         }
-        console.log("check for email and password")
+
         let user = await RegisterModel.findOne({ email }).select("+password")
-        console.log("check for User")
+
         if (!user) {
             return errorHandler(NextResponse, 400, "Invalid credentials")
         }
         const isMatch = await bcrypt.compare(password, user.password)
-        console.log("check for Password")
+
         if (!isMatch) {
             return errorHandler(NextResponse, 400, "Invalid credentials")
         }
-
+        console.log('user', user)
         const token = generateToken(user._id)
-        console.log("Token generate")
+
         const cookieData = await cookieSetter(token, true)
         const responseHeaders = {
             "Set-Cookie": cookieData,
         };
-        console.log("request completed")
-        return NextResponse.json({ message: `Welcome back,`, user }, { status: 201, headers: responseHeaders })
+
+        return NextResponse.json({ message: `Welcome back, ${user ? user?.userName : ''}`, user }, { status: 201, headers: responseHeaders })
     } catch (error) {
         console.log(error)
     }
