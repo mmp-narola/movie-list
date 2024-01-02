@@ -6,7 +6,7 @@ function dbConnect() {
         console.log('Already connected with database');
         return
     }
-    mongoose.connect('mongodb+srv://mmp:nSTWoTDv7TvVViRl@cluster0.mfwbkqs.mongodb.net/?retryWrites=true&w=majority')
+    mongoose.connect(process.env.MONGODB_URL)
     mongoose.connection.on('connected', () => {
         console.log("Connected with database.")
     })
