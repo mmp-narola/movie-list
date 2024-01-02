@@ -6,7 +6,7 @@ import MovieModel from '../../../Models/Movie';
 
 dbConnect()
 
-export async function POST(req) {
+export const POST = async (req) => {
     let { imageUrl, title, releasedYear } = await req.json()
 
     if (!imageUrl || !title || !releasedYear) {

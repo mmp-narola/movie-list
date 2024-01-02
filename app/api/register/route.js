@@ -7,7 +7,7 @@ import RegisterModel from '../../../Models/Register';
 
 dbConnect()
 
-export async function POST(req) {
+export const POST = async (req) => {
     const { userName, email, password } = await req.json()
     if (!userName || !email || !password) {
         return errorHandler(NextResponse, 400, "Please enter all fields.")

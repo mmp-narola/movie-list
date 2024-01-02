@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 dbConnect()
 
-export async function GET(req, { params }) {
+export const GET = async (req, { params }) => {
     const movieId = await params.movieId
     try {
         const editableMovie = await MovieModel.findOne({ _id: movieId })
@@ -14,7 +14,7 @@ export async function GET(req, { params }) {
     }
 }
 
-export async function PUT(req, res) {
+export const PUT = async (req, res) => {
     const movieId = await res.params.movieId
     const { title, releasedYear, imageUrl } = await req.json()
 
