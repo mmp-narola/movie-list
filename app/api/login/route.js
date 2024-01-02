@@ -9,28 +9,33 @@ import { cookieSetter } from '../../../helpers/cookieSetter';
 dbConnect()
 
 export async function POST(request) {
-    const { email, password } = await request.json()
+    try {
 
-    if (!email || !password) {
-        return new NextResponse('Missing Fields', { status: 400 })
+        const { email, password } = await request.json()
+        console.log({ email, password })
+        if (!email || !password) {
+            return new NextResponse('Missing Fields', { status: 400 })
+        }
+
+        let user = await RegisterModel.findOne({ email }).select("+password")
+        if (!user) {
+            return errorHandler(NextResponse, 400, "Invalid credentials")
+        }
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+            return errorHandler(NextResponse, 400, "Invalid credentials")
+        }
+
+        const token = generateToken(user._id)
+        const cookieData = await cookieSetter(token, true)
+        const responseHeaders = {
+            "Set-Cookie": cookieData,
+        };
+
+        return NextResponse.json({ message: `Welcome back,`, user }, { status: 201, headers: responseHeaders })
+    } catch (error) {
+        console.log(error)
     }
-
-    let user = await RegisterModel.findOne({ email }).select("+password")
-    if (!user) {
-        return errorHandler(NextResponse, 400, "Invalid credentials")
-    }
-    const isMatch = await bcrypt.compare(password, user.password)
-    if (!isMatch) {
-        return errorHandler(NextResponse, 400, "Invalid credentials")
-    }
-
-    const token = generateToken(user._id)
-    const cookieData = await cookieSetter(token, true)
-    const responseHeaders = {
-        "Set-Cookie": cookieData,
-    };
-
-    return NextResponse.json({ message: `Welcome back,`, user }, { status: 201, headers: responseHeaders })
 }
 
 export const GET = async (req, res) => {
