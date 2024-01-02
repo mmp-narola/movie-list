@@ -13,6 +13,7 @@ const AddMovie = ({ params }) => {
     const [releasedYear, setReleaseYear] = useState("")
     const [selectedImage, setSelectedImage] = useState(null);
     const [editableMovie, setEditableMovie] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const getMovie = async (movieId) => {
@@ -36,19 +37,22 @@ const AddMovie = ({ params }) => {
             releasedYear: releasedYear || editableMovie?.releasedYear,
             imageUrl: selectedImage ? await uploadImage(selectedImage) : editableMovie?.imageUrl,
         };
-
+        setIsLoading(true)
         try {
             if (isEditMode) {
                 const res = await ApiHelper.updateMovie(movieId, updatedData);
                 toast.success(res?.message);
+                setIsLoading(false)
                 router.push('/');
             } else {
                 const imageUrl = await uploadImage(selectedImage);
                 const res = await ApiHelper.addMovie({ title, releasedYear, imageUrl });
                 toast.success(res?.message);
+                setIsLoading(false)
                 router.push('/');
             }
         } catch (error) {
+            setIsLoading(false)
             toast.error(error?.response?.data);
         }
     }
@@ -153,7 +157,7 @@ const AddMovie = ({ params }) => {
                             <button type="button" className="w-full text-white bg-background border border-white text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center "
                                 onClick={() => router.push('/')}
                             >Cancel</button>
-                            <button type="submit" className="w-full text-white bg-primary border border-white text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center ">{editableMovie ? "Update" : "Submit"}</button>
+                            <button type="submit" disabled={isLoading} className="w-full text-white bg-primary border border-white text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center ">{isLoading ? 'Loading...' : editableMovie ? "Update" : "Submit"}</button>
                         </div>
                     </div>
 
