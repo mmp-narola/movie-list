@@ -7,7 +7,7 @@ function dbConnect() {
         return
     }
     mongoose.connect(process.env.MONGODB_URL, {
-        useNewUrlParser: true,
+        // useNewUrlParser: true,
         useUnifiedTopology: true,
         autoIndex: true
     })

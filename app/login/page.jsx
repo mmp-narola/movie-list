@@ -8,14 +8,15 @@ import { toast } from 'react-toastify'
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [isApiCalling, setIsApiCalling] = useState(false)
     const router = useRouter()
 
     const submitHandler = async (e) => {
         e.preventDefault()
 
-        //currently we dont have registration page so I manually set usename and password
         try {
             e.preventDefault();
+            setIsApiCalling(true)
             const res = await ApiHelper.login({ email: email, password: password });
             if (res) {
                 toast.success(res?.message)
@@ -23,6 +24,7 @@ const Login = () => {
             } else {
                 toast.error(res?.error)
             }
+            setIsApiCalling(false)
         } catch (error) {
             console.log('error', error)
         }
@@ -69,7 +71,7 @@ const Login = () => {
                             Remember me
                         </label>
                     </div>
-                    <button type="submit" className="w-full text-white bg-primary text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center">Log In</button>
+                    <button type="submit" className="w-full text-white bg-primary text-body-md rounded-lg leading-body-md px-5 py-2.5 text-center" disabled={isApiCalling}>{isApiCalling ? 'Loading...' : 'Log In'}</button>
                 </form>
             </div>
         </section >
