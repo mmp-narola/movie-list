@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     return (
-        <section className="font-sans">
+        <section className="font-sans" style={{ minHeight: 'calc(100vh - 25px)' }}>
             <div className="flex flex-col lg:max-w-md md:max-w-md sm:max-w-sm max-w-xs justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <h1 className="text-h1 text-white text-center leading-h1 mb-8">
                     Sign in
