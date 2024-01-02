@@ -31,7 +31,7 @@ export async function POST(request) {
         const responseHeaders = {
             "Set-Cookie": cookieData,
         };
-
+        console.log("request completed")
         return NextResponse.json({ message: `Welcome back,`, user }, { status: 201, headers: responseHeaders })
     } catch (error) {
         console.log(error)
