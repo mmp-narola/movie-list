@@ -16,17 +16,20 @@ export async function POST(request) {
         if (!email || !password) {
             return new NextResponse('Missing Fields', { status: 400 })
         }
-
+        console.log("check for email and password")
         let user = await RegisterModel.findOne({ email }).select("+password")
+        console.log("check for User")
         if (!user) {
             return errorHandler(NextResponse, 400, "Invalid credentials")
         }
         const isMatch = await bcrypt.compare(password, user.password)
+        console.log("check for Password")
         if (!isMatch) {
             return errorHandler(NextResponse, 400, "Invalid credentials")
         }
 
         const token = generateToken(user._id)
+        console.log("Token generate")
         const cookieData = await cookieSetter(token, true)
         const responseHeaders = {
             "Set-Cookie": cookieData,
