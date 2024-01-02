@@ -16,7 +16,7 @@ const Login = () => {
         //currently we dont have registration page so I manually set usename and password
         try {
             e.preventDefault();
-            const res = await ApiHelper.login({ email: 'mmp@narola.email', password: '123456' });
+            const res = await ApiHelper.login({ email: email, password: password });
             if (res) {
                 toast.success(res?.message)
                 router.push('/')
@@ -43,7 +43,7 @@ const Login = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="text-body-sm leading-body-sm bg-input text-white rounded-lg block w-full p-2.5 "
-                            placeholder="name@company.com" required="" />
+                            placeholder="mmp@narola.email" required="" />
                     </div>
                     <div>
                         <input
@@ -51,7 +51,7 @@ const Login = () => {
                             name="password"
                             id="password"
                             value={password}
-                            placeholder="••••••••"
+                            placeholder="123456"
                             onChange={(e) => setPassword(e.target.value)}
                             className="text-body-sm leading-body-sm bg-input text-white rounded-lg block w-full p-2.5 "
                         />

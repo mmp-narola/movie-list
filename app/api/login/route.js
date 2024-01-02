@@ -13,8 +13,11 @@ export const POST = async (request) => {
 
         const { email, password } = await request.json()
         console.log({ email, password })
-        if (!email || !password) {
-            return new NextResponse('Missing Fields', { status: 400 })
+        if (!email) {
+            return new NextResponse('Missing Email.', { status: 400 })
+        }
+        if (!password) {
+            return new NextResponse('Missing Password.', { status: 400 })
         }
         console.log("check for email and password")
         let user = await RegisterModel.findOne({ email }).select("+password")
