@@ -2,7 +2,7 @@ import axios from "axios";
 import { getTokenFromLocalStorage, removeTokenFromLocalStorage } from "./TokenHelper";
 import { toast } from "react-toastify";
 
-const LOCAL_API_URL = "http://localhost:3000/api";
+const LOCAL_API_URL = "/api";
 
 
 const axiosApi = axios.create({
