@@ -6,11 +6,7 @@ function dbConnect() {
         console.log('Already connected with database');
         return
     }
-    mongoose.connect('mongodb+srv://mmp:nSTWoTDv7TvVViRl@cluster0.mfwbkqs.mongodb.net/?retryWrites=true&w=majority', {
-        // useNewUrlParser: true,
-        // useUnifiedTopology: true,
-        autoIndex: true
-    })
+    mongoose.connect('mongodb+srv://mmp:nSTWoTDv7TvVViRl@cluster0.mfwbkqs.mongodb.net/?retryWrites=true&w=majority')
     mongoose.connection.on('connected', () => {
         console.log("Connected with database.")
     })
